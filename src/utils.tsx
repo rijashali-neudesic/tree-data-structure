@@ -11,18 +11,26 @@ export const deriveNodeContainer = (
   state: IOperationContainer,
   parentIndex: number = 0
 ): React.ReactNode => (
-  <Expandable title="Test" iteration={parentIndex}>
+  <Expandable {...state} title={state.label} iteration={parentIndex}>
     {state.nodes.map((_, index) => (
       <>
         {instanceOfIOperationContainer(_) ? (
           deriveNodeContainer(_, parentIndex + index + 1)
         ) : (
-          <Expandable iteration={parentIndex + index + 1} title={_}>{_testContent}</Expandable>
+          <Expandable
+            iteration={parentIndex + index + 1}
+            title={_.label}
+            isPrimary={_.isPrimary}
+          >
+            {_testContent}
+          </Expandable>
         )}
         {index === state.nodes.length - 1 ? null : (
           <>
             <br />
-            <div style={{ fontWeight: 'bold' }}>{getOperationString(state.operation)}</div>
+            <div style={{ fontWeight: "bold" }}>
+              {getOperationString(state.operation)}
+            </div>
             <br />
           </>
         )}

@@ -1,7 +1,12 @@
-export interface IOperationContainer {
+interface IFundamentalContainer {
+  label: string;
+  counts: { aggregate: number; pass: number; fail: number; risk: number };
+  isPrimary?: boolean;
+}
+
+export interface IOperationContainer extends IFundamentalContainer {
   operation: "&" | "|";
-  nodes: (IOperationContainer | string)[];
-  counts?: { aggregate: number; pass: number; fail: number; risk: number };
+  nodes: (IOperationContainer | IFundamentalContainer)[];
 }
 
 export function instanceOfIOperationContainer(
