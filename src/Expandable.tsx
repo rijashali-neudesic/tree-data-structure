@@ -40,6 +40,7 @@ export const Expandable: React.FC<{
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1-content"
         id="panel1-header"
+        sx={{ fontWeight: 600 }}
       >
         {isPrimary ? (
           <div
